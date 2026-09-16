@@ -1,0 +1,10 @@
+/storage/uploads/*
+!/storage/uploads/.gitkeep
+/public/uploads/*
+!/public/uploads/.gitkeep
+.env
+*.log
+
+# Ferramentas de design locais (reinstalar com: npx impeccable install)
+/.claude/
+/.cursor/

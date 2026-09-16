@@ -1,0 +1,13 @@
+# Envia todas as requisicoes que nao sao arquivos reais para o front controller.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Nao lista diretorios.
+Options -Indexes

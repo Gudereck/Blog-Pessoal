@@ -1,0 +1,6 @@
+# Bloqueia acesso direto a tudo que esta fora de public/.
+# (Em producao, aponte o DocumentRoot para a pasta public/.)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(?!public/) public/$1 [L]
+</IfModule>

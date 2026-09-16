@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-16T00:00:00Z",
+  "title": "Design System: Meu Blog",
+  "extensions": {
+    "colorMeta": {
+      "rust-warm": {
+        "role": "primary",
+        "displayName": "Ferrugem Quente",
+        "canonical": "#b3521f",
+        "tonalRamp": ["#2e1206", "#4a1d0a", "#6b2b0e", "#8c3f17", "#b3521f", "#cf7a4a", "#e6ab82", "#f5dcc9"]
+      },
+      "paper-bg": {
+        "role": "neutral",
+        "displayName": "Papel",
+        "canonical": "#fbfaf8",
+        "tonalRamp": ["#3a3733", "#5c5852", "#847e75", "#aca498", "#d4ccbf", "#eae4da", "#f5f1ea", "#fbfaf8"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#1f2328",
+        "tonalRamp": ["#0a0b0c", "#1f2328", "#33393f", "#4a5259", "#6b7280", "#9aa0a8", "#c6cad0", "#e5e2dd"]
+      }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "The one page title per screen." },
+      "title": { "displayName": "Title", "purpose": "Card and form headings." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs and post body copy." },
+      "label": { "displayName": "Label", "purpose": "Nav links, meta lines, form labels, table headers, badges." }
+    },
+    "breakpoints": [
+      { "name": "mobile", "value": "560px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call to action (submit forms, primary admin actions).",
+      "html": "<button class=\"ds-btn-primary\">Salvar</button>",
+      "css": ".ds-btn-primary { display: inline-block; background: #b3521f; color: #fff; border: 1px solid #b3521f; padding: 10px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; } .ds-btn-primary:hover { background: #8c3f17; border-color: #8c3f17; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Lower-emphasis action beside a primary button.",
+      "html": "<button class=\"ds-btn-secondary\">Cancelar</button>",
+      "css": ".ds-btn-secondary { display: inline-block; background: transparent; color: #b3521f; border: 1px solid #b3521f; padding: 10px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; } .ds-btn-secondary:hover { background: rgba(179, 82, 31, 0.08); color: #8c3f17; }"
+    },
+    {
+      "name": "Post Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "One post preview in the home list.",
+      "html": "<article class=\"ds-post-card\"><h2><a href=\"#\">Título do post</a></h2><p class=\"ds-meta\">por Autor em 12 de setembro de 2026</p><p>Resumo do post aparece aqui, em uma ou duas linhas de texto corrido.</p><a class=\"ds-read-more\" href=\"#\">Ler mais &rarr;</a></article>",
+      "css": ".ds-post-card { background: #ffffff; border: 1px solid #e5e2dd; border-radius: 10px; padding: 24px; } .ds-post-card h2 { margin: 0 0 6px; font-size: 1.35rem; font-weight: 700; } .ds-post-card h2 a { color: #1f2328; text-decoration: none; } .ds-post-card h2 a:hover { color: #b3521f; } .ds-meta { color: #6b7280; font-size: 0.85rem; margin: 0 0 14px; } .ds-read-more { color: #b3521f; font-weight: 600; font-size: 0.92rem; text-decoration: none; } .ds-read-more:hover { text-decoration: underline; }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Small status pill, e.g. published/draft in the admin post list.",
+      "html": "<span class=\"ds-badge ds-badge-ok\">Publicado</span>",
+      "css": ".ds-badge { display: inline-block; padding: 2px 10px; border-radius: 999px; background: #eceae6; color: #6b7280; font-size: 0.78rem; font-weight: 600; } .ds-badge-ok { background: #e7f5ec; color: #14683a; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": null,
+      "description": "Text/email/password field used across login and admin forms.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Título\">",
+      "css": ".ds-input { width: 100%; padding: 10px 12px; border: 1px solid #e5e2dd; border-radius: 8px; background: #fff; color: #1f2328; font: inherit; } .ds-input:focus { outline: 2px solid #b3521f; outline-offset: 1px; border-color: #b3521f; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Warm Notebook",
+    "overview": "This is a quiet, personal system built to feel like a paper notebook, not a media outlet: a warm off-white page, one restrained accent, and hairline borders doing all the work that shadows usually do. Nothing raises its voice. The single sans-serif family carries every role, so hierarchy comes from size and weight alone, and the terracotta accent is spent sparingly — a link, a button, a badge — never a wash of color across a surface.\n\nButtons, cards, and fields are built to feel quiet and functional: they do their job without asking to be admired. The system currently has no imagery and no display typeface; it was designed around text-only content (titles, meta lines, prose), which is the main thing the next phase of work extends rather than replaces.",
+    "keyCharacteristics": [
+      "Warm, near-white paper background with a single terracotta accent used rarely.",
+      "Completely flat — no shadows anywhere; separation comes from 1px hairline borders.",
+      "One typeface for every role; hierarchy is size and weight only.",
+      "Single-column, stacked layouts; no grid system yet."
+    ],
+    "rules": [
+      { "name": "The Rare Rust Rule", "body": "Ferrugem Quente appears in exactly one purposeful place per view — a button, a link, a badge. It never fills a background or covers more than a small control.", "section": "colors" },
+      { "name": "The One Face Rule", "body": "Every role shares the same sans-serif family; hierarchy is expressed only through size and weight, never a second typeface.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "No box-shadow is used anywhere. Depth is never simulated; two adjacent surfaces are told apart by a 1px border and a subtle background-tone shift, nothing else.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Ferrugem Quente rare — one accent moment per view, never a background fill.",
+      "Do use the 1px hairline border as the only tool for separating surfaces; never simulate depth with shadow.",
+      "Do drive all hierarchy through the single sans-serif family's size and weight."
+    ],
+    "donts": [
+      "Don't add box-shadow anywhere in this system.",
+      "Don't introduce a second typeface without a deliberate, documented decision.",
+      "Don't use a border radius outside 8px, 10px, or the 999px pill."
+    ]
+  }
+}
