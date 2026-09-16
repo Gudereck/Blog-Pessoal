@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= e($title ?? 'Painel') ?> &middot; Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap">
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
@@ -14,6 +17,7 @@
         <nav>
             <a href="/admin/posts">Posts</a>
             <a href="/admin/posts/create">Novo post</a>
+            <a href="/admin/categories">Categorias</a>
             <a href="/">Ver site</a>
             <form action="/logout" method="post" class="inline-form">
                 <?= csrf_field() ?>

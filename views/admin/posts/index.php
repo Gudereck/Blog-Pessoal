@@ -11,6 +11,7 @@
         <thead>
         <tr>
             <th>Titulo</th>
+            <th>Categoria</th>
             <th>Status</th>
             <th>Criado em</th>
             <th class="right">Acoes</th>
@@ -24,6 +25,13 @@
                         <a href="/posts/<?= e($post['slug']) ?>"><?= e($post['title']) ?></a>
                     <?php else: ?>
                         <?= e($post['title']) ?>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if (!empty($post['category_name'])): ?>
+                        <span class="tag tag-<?= e($post['category_color']) ?>"><?= e($post['category_name']) ?></span>
+                    <?php else: ?>
+                        <span class="muted">&mdash;</span>
                     <?php endif; ?>
                 </td>
                 <td>

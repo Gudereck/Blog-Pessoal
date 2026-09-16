@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-16T00:00:00Z",
+  "generatedAt": "2026-09-16T00:35:00Z",
   "title": "Design System: Meu Blog",
   "extensions": {
     "colorMeta": {
@@ -21,13 +21,37 @@
         "displayName": "Tinta",
         "canonical": "#1f2328",
         "tonalRamp": ["#0a0b0c", "#1f2328", "#33393f", "#4a5259", "#6b7280", "#9aa0a8", "#c6cad0", "#e5e2dd"]
+      },
+      "sage": {
+        "role": "category",
+        "displayName": "Verde-Sálvia",
+        "canonical": "oklch(58% 0.12 145)",
+        "tonalRamp": ["#0f1f13", "#1c3a22", "#2c5934", "#437a49", "#5f9a63", "#8fc290", "#c3e4c2", "#e8f5e6"]
+      },
+      "blue": {
+        "role": "category",
+        "displayName": "Azul-Poeira",
+        "canonical": "oklch(58% 0.11 235)",
+        "tonalRamp": ["#0e1a26", "#1a3145", "#2a4c68", "#3f6c8f", "#5c8fb3", "#8db4d2", "#c1dced", "#e9f2f8"]
+      },
+      "plum": {
+        "role": "category",
+        "displayName": "Ameixa",
+        "canonical": "oklch(56% 0.13 320)",
+        "tonalRamp": ["#241026", "#3f1c44", "#5f2c66", "#83428b", "#a561ab", "#c493cb", "#e0c4e6", "#f4e8f6"]
+      },
+      "gold": {
+        "role": "category",
+        "displayName": "Ouro-Velho",
+        "canonical": "oklch(60% 0.12 80)",
+        "tonalRamp": ["#241c0a", "#443415", "#6a5220", "#93752f", "#b99b45", "#d3bd76", "#e9dcae", "#f7f0dc"]
       }
     },
     "typographyMeta": {
-      "headline": { "displayName": "Headline", "purpose": "The one page title per screen." },
-      "title": { "displayName": "Title", "purpose": "Card and form headings." },
-      "body": { "displayName": "Body", "purpose": "Paragraphs and post body copy." },
-      "label": { "displayName": "Label", "purpose": "Nav links, meta lines, form labels, table headers, badges." }
+      "headline": { "displayName": "Headline", "purpose": "The one page title per screen. Newsreader." },
+      "title": { "displayName": "Title", "purpose": "Card and form headings. Newsreader." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs and post body copy. System sans." },
+      "label": { "displayName": "Label", "purpose": "Nav links, meta lines, form labels, table headers, badges. System sans." }
     },
     "breakpoints": [
       { "name": "mobile", "value": "560px" }
@@ -54,9 +78,17 @@
       "name": "Post Card",
       "kind": "card",
       "refersTo": "card",
-      "description": "One post preview in the home list.",
-      "html": "<article class=\"ds-post-card\"><h2><a href=\"#\">Título do post</a></h2><p class=\"ds-meta\">por Autor em 12 de setembro de 2026</p><p>Resumo do post aparece aqui, em uma ou duas linhas de texto corrido.</p><a class=\"ds-read-more\" href=\"#\">Ler mais &rarr;</a></article>",
-      "css": ".ds-post-card { background: #ffffff; border: 1px solid #e5e2dd; border-radius: 10px; padding: 24px; } .ds-post-card h2 { margin: 0 0 6px; font-size: 1.35rem; font-weight: 700; } .ds-post-card h2 a { color: #1f2328; text-decoration: none; } .ds-post-card h2 a:hover { color: #b3521f; } .ds-meta { color: #6b7280; font-size: 0.85rem; margin: 0 0 14px; } .ds-read-more { color: #b3521f; font-weight: 600; font-size: 0.92rem; text-decoration: none; } .ds-read-more:hover { text-decoration: underline; }"
+      "description": "One post preview in the home list, now image-forward with an optional category tag.",
+      "html": "<article class=\"ds-post-card\"><img class=\"ds-post-cover\" src=\"cover.jpg\" alt=\"\"><div class=\"ds-post-card-body\"><span class=\"ds-tag ds-tag-sage\">Jogos</span><h2><a href=\"#\">Título do post</a></h2><p class=\"ds-meta\">por Autor em 12 de setembro de 2026</p><p>Resumo do post aparece aqui, em uma ou duas linhas de texto corrido.</p><a class=\"ds-read-more\" href=\"#\">Ler mais &rarr;</a></div></article>",
+      "css": ".ds-post-card { display: flex; flex-direction: column; background: #ffffff; border: 1px solid #e5e2dd; border-radius: 10px; overflow: hidden; } .ds-post-cover { width: 100%; aspect-ratio: 4/3; object-fit: cover; } .ds-post-card-body { padding: 20px 22px 22px; } .ds-post-card h2 { margin: 0 0 2px; font-family: 'Newsreader', Georgia, serif; font-weight: 500; font-size: 1.4rem; } .ds-post-card h2 a { color: #1f2328; text-decoration: none; } .ds-post-card h2 a:hover { color: #b3521f; } .ds-meta { color: #6b7280; font-size: 0.85rem; margin: 0 0 10px; } .ds-read-more { color: #b3521f; font-weight: 600; font-size: 0.92rem; text-decoration: none; } .ds-read-more:hover { text-decoration: underline; }"
+    },
+    {
+      "name": "Cover Placeholder",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Fills a post card or hero when no cover image was uploaded yet: a flat image glyph over a soft gradient tinted by the post's category color.",
+      "html": "<div class=\"ds-cover-placeholder ds-tag-sage\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\"/><circle cx=\"8.5\" cy=\"8.5\" r=\"1.5\"/><path d=\"M21 15l-5-5-4 4-3-3-6 6\"/></svg></div>",
+      "css": ".ds-cover-placeholder { display: flex; align-items: center; justify-content: center; aspect-ratio: 4/3; } .ds-cover-placeholder svg { width: 44px; height: 44px; opacity: 0.7; } .ds-cover-placeholder.ds-tag-sage { background: linear-gradient(135deg, oklch(93% 0.03 145), #fff); color: oklch(58% 0.12 145); }"
     },
     {
       "name": "Badge",
@@ -67,37 +99,58 @@
       "css": ".ds-badge { display: inline-block; padding: 2px 10px; border-radius: 999px; background: #eceae6; color: #6b7280; font-size: 0.78rem; font-weight: 600; } .ds-badge-ok { background: #e7f5ec; color: #14683a; }"
     },
     {
+      "name": "Category Tag",
+      "kind": "chip",
+      "refersTo": "tag-sage",
+      "description": "One of five curated hues; marks a post's category on cards, hero, and the admin list.",
+      "html": "<span class=\"ds-tag ds-tag-sage\">Jogos</span>",
+      "css": ".ds-tag { display: inline-block; padding: 3px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; } .ds-tag-rust { background: rgba(179,82,31,0.12); color: #8c3f17; } .ds-tag-sage { background: oklch(93% 0.03 145); color: oklch(58% 0.12 145); } .ds-tag-blue { background: oklch(93% 0.02 235); color: oklch(58% 0.11 235); } .ds-tag-plum { background: oklch(93% 0.03 320); color: oklch(56% 0.13 320); } .ds-tag-gold { background: oklch(93% 0.03 80); color: oklch(60% 0.12 80); }"
+    },
+    {
       "name": "Text Input",
       "kind": "input",
       "refersTo": null,
-      "description": "Text/email/password field used across login and admin forms.",
+      "description": "Text/email/password field and select used across login and admin forms.",
       "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Título\">",
       "css": ".ds-input { width: 100%; padding: 10px 12px; border: 1px solid #e5e2dd; border-radius: 8px; background: #fff; color: #1f2328; font: inherit; } .ds-input:focus { outline: 2px solid #b3521f; outline-offset: 1px; border-color: #b3521f; }"
+    },
+    {
+      "name": "Color Picker",
+      "kind": "input",
+      "refersTo": null,
+      "description": "Category form's color swatches; one of the five curated hues, never a typed value.",
+      "html": "<label class=\"ds-color-option ds-color-sage\"><input type=\"radio\" name=\"color\" value=\"sage\" checked></label>",
+      "css": ".ds-color-option { width: 34px; height: 34px; border-radius: 999px; display: inline-flex; border: 2px solid transparent; } .ds-color-option.ds-color-sage { background: oklch(58% 0.12 145); }"
     }
   ],
   "narrative": {
     "northStar": "The Warm Notebook",
-    "overview": "This is a quiet, personal system built to feel like a paper notebook, not a media outlet: a warm off-white page, one restrained accent, and hairline borders doing all the work that shadows usually do. Nothing raises its voice. The single sans-serif family carries every role, so hierarchy comes from size and weight alone, and the terracotta accent is spent sparingly — a link, a button, a badge — never a wash of color across a surface.\n\nButtons, cards, and fields are built to feel quiet and functional: they do their job without asking to be admired. The system currently has no imagery and no display typeface; it was designed around text-only content (titles, meta lines, prose), which is the main thing the next phase of work extends rather than replaces.",
+    "overview": "This is a quiet, personal system built to feel like a paper notebook, not a media outlet: a warm off-white page, one restrained accent, and hairline borders doing all the work that shadows usually do. Nothing raises its voice. The terracotta accent is spent sparingly — a link, a button, a badge — never a wash of color across a surface.\n\nButtons, cards, and fields are built to feel quiet and functional: they do their job without asking to be admired. The system was extended once, deliberately: posts can now carry a cover image and one category, so headlines and titles picked up a quiet serif (Newsreader) for warmth, and categories each get one hue-shifted color from the same restrained formula as the original accent. Everything else — the paper background, the hairline borders, the flat surfaces — was preserved as-is.",
     "keyCharacteristics": [
       "Warm, near-white paper background with a single terracotta accent used rarely.",
       "Completely flat — no shadows anywhere; separation comes from 1px hairline borders.",
-      "One typeface for every role; hierarchy is size and weight only.",
-      "Single-column, stacked layouts; no grid system yet."
+      "Two typefaces: a quiet serif for headlines/titles, the original sans for everything else.",
+      "Cards and post pages can carry a cover image; a calm icon placeholder fills the gap until one exists.",
+      "Category color is one of five curated hues, never a free-typed color."
     ],
     "rules": [
       { "name": "The Rare Rust Rule", "body": "Ferrugem Quente appears in exactly one purposeful place per view — a button, a link, a badge. It never fills a background or covers more than a small control.", "section": "colors" },
-      { "name": "The One Face Rule", "body": "Every role shares the same sans-serif family; hierarchy is expressed only through size and weight, never a second typeface.", "section": "typography" },
+      { "name": "The Five Hues Rule", "body": "A category's color is always one of the five Category Palette hues, picked in the admin form's swatches — never a hex value typed by hand.", "section": "colors" },
+      { "name": "The Two Face Rule", "body": "Exactly two typefaces, each locked to a role: Newsreader for Headline and Title, the system sans for Body and Label. Never a third face, and never Newsreader for body copy.", "section": "typography" },
       { "name": "The Flat-By-Default Rule", "body": "No box-shadow is used anywhere. Depth is never simulated; two adjacent surfaces are told apart by a 1px border and a subtle background-tone shift, nothing else.", "section": "elevation" }
     ],
     "dos": [
       "Do keep Ferrugem Quente rare — one accent moment per view, never a background fill.",
       "Do use the 1px hairline border as the only tool for separating surfaces; never simulate depth with shadow.",
-      "Do drive all hierarchy through the single sans-serif family's size and weight."
+      "Do keep Newsreader locked to Headline/Title and the sans locked to Body/Label.",
+      "Do pick category color only from the five Category Palette swatches, never a typed hex.",
+      "Do show a flat icon placeholder for a missing cover image — never a fabricated photo."
     ],
     "donts": [
       "Don't add box-shadow anywhere in this system.",
-      "Don't introduce a second typeface without a deliberate, documented decision.",
-      "Don't use a border radius outside 8px, 10px, or the 999px pill."
+      "Don't introduce a third typeface, or use Newsreader for body copy.",
+      "Don't use a border radius outside 8px, 10px, or the 999px pill.",
+      "Don't invent a category-specific illustration — categories are user-created and open-ended, so the placeholder stays generic."
     ]
   }
 }

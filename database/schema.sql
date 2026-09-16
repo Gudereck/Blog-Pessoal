@@ -17,12 +17,24 @@ CREATE TABLE IF NOT EXISTS users (
     UNIQUE KEY users_email_unique (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE IF NOT EXISTS categories (
+    id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name       VARCHAR(60) NOT NULL,
+    slug       VARCHAR(80) NOT NULL,
+    color      VARCHAR(20) NOT NULL DEFAULT 'rust',
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE KEY categories_slug_unique (slug)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS posts (
     id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
     user_id      INT UNSIGNED NOT NULL,
+    category_id  INT UNSIGNED NULL,
     title        VARCHAR(200) NOT NULL,
     slug         VARCHAR(220) NOT NULL,
     excerpt      VARCHAR(300) NULL,
+    cover_image  VARCHAR(255) NULL,
     body         MEDIUMTEXT NOT NULL,
     published    TINYINT(1) NOT NULL DEFAULT 0,
     published_at DATETIME NULL,
@@ -32,5 +44,7 @@ CREATE TABLE IF NOT EXISTS posts (
     UNIQUE KEY posts_slug_unique (slug),
     KEY posts_published_index (published, published_at),
     CONSTRAINT posts_user_id_foreign FOREIGN KEY (user_id)
-        REFERENCES users (id) ON DELETE CASCADE
+        REFERENCES users (id) ON DELETE CASCADE,
+    CONSTRAINT posts_category_id_foreign FOREIGN KEY (category_id)
+        REFERENCES categories (id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

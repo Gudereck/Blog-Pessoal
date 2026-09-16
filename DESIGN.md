@@ -4,6 +4,7 @@ description: A warm, quiet personal notebook for study notes, favorite games, an
 colors:
   rust-warm: "#b3521f"
   rust-warm-deep: "#8c3f17"
+  rust-warm-soft: "rgba(179, 82, 31, 0.12)"
   paper-bg: "#fbfaf8"
   surface: "#ffffff"
   ink: "#1f2328"
@@ -13,16 +14,24 @@ colors:
   meadow-text: "#14683a"
   clay-bg: "#fdecec"
   clay-text: "#9b1c1c"
+  sage: "oklch(58% 0.12 145)"
+  sage-soft: "oklch(93% 0.03 145)"
+  blue: "oklch(58% 0.11 235)"
+  blue-soft: "oklch(93% 0.02 235)"
+  plum: "oklch(56% 0.13 320)"
+  plum-soft: "oklch(93% 0.03 320)"
+  gold: "oklch(60% 0.12 80)"
+  gold-soft: "oklch(93% 0.03 80)"
 typography:
   headline:
-    fontFamily: "-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-    fontSize: "1.9rem"
-    fontWeight: 700
+    fontFamily: "Newsreader, Georgia, serif"
+    fontSize: "2.1rem"
+    fontWeight: 500
     lineHeight: 1.25
   title:
-    fontFamily: "-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
-    fontSize: "1.35rem"
-    fontWeight: 700
+    fontFamily: "Newsreader, Georgia, serif"
+    fontSize: "1.4rem"
+    fontWeight: 500
     lineHeight: 1.3
   body:
     fontFamily: "-apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
@@ -64,6 +73,26 @@ components:
     backgroundColor: "#eceae6"
     textColor: "{colors.ink-muted}"
     rounded: "{rounded.pill}"
+  tag-rust:
+    backgroundColor: "{colors.rust-warm-soft}"
+    textColor: "{colors.rust-warm-deep}"
+    rounded: "{rounded.pill}"
+  tag-sage:
+    backgroundColor: "{colors.sage-soft}"
+    textColor: "{colors.sage}"
+    rounded: "{rounded.pill}"
+  tag-blue:
+    backgroundColor: "{colors.blue-soft}"
+    textColor: "{colors.blue}"
+    rounded: "{rounded.pill}"
+  tag-plum:
+    backgroundColor: "{colors.plum-soft}"
+    textColor: "{colors.plum}"
+    rounded: "{rounded.pill}"
+  tag-gold:
+    backgroundColor: "{colors.gold-soft}"
+    textColor: "{colors.gold}"
+    rounded: "{rounded.pill}"
 ---
 
 # Design System: Meu Blog
@@ -74,13 +103,16 @@ components:
 
 This is a quiet, personal system built to feel like a paper notebook, not a media outlet: a warm off-white page, one restrained accent, and hairline borders doing all the work that shadows usually do. Nothing raises its voice. The single sans-serif family carries every role, so hierarchy comes from size and weight alone, and the terracotta accent is spent sparingly — a link, a button, a badge — never a wash of color across a surface.
 
-Buttons, cards, and fields are built to feel quiet and functional: they do their job without asking to be admired. The system currently has no imagery and no display typeface; it was designed around text-only content (titles, meta lines, prose), which is the main thing the next phase of work extends rather than replaces.
+Buttons, cards, and fields are built to feel quiet and functional: they do their job without asking to be admired.
+
+This system was extended once, deliberately: posts can now carry a cover image and one category, so headlines and titles picked up a quiet serif (Newsreader) to give image-forward pages a touch more warmth, and categories each get one hue-shifted color from the same restrained formula as the original accent. Everything else — the paper background, the hairline borders, the flat surfaces, the rare use of color — was preserved as-is.
 
 **Key Characteristics:**
 - Warm, near-white paper background with a single terracotta accent used rarely.
 - Completely flat — no shadows anywhere; separation comes from 1px hairline borders.
-- One typeface for every role; hierarchy is size and weight only.
-- Single-column, stacked layouts; no grid system yet.
+- Two typefaces: a quiet serif for headlines/titles, the original sans for everything else.
+- Cards and post pages can now carry a cover image; a calm icon placeholder fills the gap until one exists.
+- Category color is one of five curated hues (same lightness/chroma as the accent), never a free-typed color.
 
 ## Colors
 
@@ -101,24 +133,35 @@ A warm neutral base (paper, not stark white) with one earthy accent and two smal
 - **Fundo Sucesso / Texto Sucesso** (`#e7f5ec` / `#14683a`): success alerts, "published" badge.
 - **Fundo Erro / Texto Erro** (`#fdecec` / `#9b1c1c`): error alerts, destructive link-buttons.
 
+### Category Palette
+Five curated hues share the accent's lightness and chroma in oklch, varying only the hue — a category is never a free-typed color, only one of these five:
+- **Ferrugem Quente** (`oklch(58% 0.13 38)` ≈ `#b3521f`): the default/first category color, same value as the Primary accent.
+- **Verde-Sálvia** (`oklch(58% 0.12 145)`): a second, calmer category color.
+- **Azul-Poeira** (`oklch(58% 0.11 235)`): a third, cooler category color.
+- **Ameixa** (`oklch(56% 0.13 320)`): a fourth category color.
+- **Ouro-Velho** (`oklch(60% 0.12 80)`): a fifth category color.
+
+Each carries a "soft" tint at ~93% lightness for tag backgrounds and cover-image placeholders, the same formula the original accent already used informally.
+
 ### Named Rules
 **The Rare Rust Rule.** Ferrugem Quente appears in exactly one purposeful place per view — a button, a link, a badge. It never fills a background or covers more than a small control.
+**The Five Hues Rule.** A category's color is always one of the five Category Palette hues, picked in the admin form's swatches — never a hex value typed by hand. This keeps every future category visually harmonious by construction.
 
 ## Typography
 
 **Body Font:** -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif
-**Display Font:** none yet — headings reuse the body family at a larger size and bold weight.
+**Display Font:** Newsreader (with Georgia, serif fallback) — headlines and titles only.
 
-**Character:** One plain, native-feeling sans-serif carries the whole page. The system reads as understated and utilitarian by choice, not by omission.
+**Character:** A quiet serif for the words that name a page or a post, a plain sans for everything read in bulk. The pairing stays understated on purpose — Newsreader is a text serif, not a decorative display face.
 
 ### Hierarchy
-- **Headline** (700, 1.9rem, line-height 1.25): the one page title per screen (`.page-title`) — "Últimos posts", a post's own title, "Painel".
-- **Title** (700, 1.35rem, line-height 1.3): card and form headings — a post-card's title link, a form's `<h1>`.
-- **Body** (400, 16px, line-height 1.65): paragraphs, post body copy.
-- **Label** (600, 0.78–0.93rem, uppercase with 0.04em tracking on table headers only): nav links, meta lines ("por X em Y"), form labels, table headers, badges.
+- **Headline** (Newsreader, 500, 2.1rem, line-height 1.25): the one page title per screen (`.page-title`) — "Últimos posts", a post's own title, "Painel".
+- **Title** (Newsreader, 500, 1.4rem, line-height 1.3): card and form headings — a post-card's title link, a form's `<h1>`.
+- **Body** (sans, 400, 16px, line-height 1.65): paragraphs, post body copy.
+- **Label** (sans, 600, 0.78–0.93rem, uppercase with 0.04em tracking on table headers only): nav links, meta lines ("por X em Y"), form labels, table headers, badges.
 
 ### Named Rules
-**The One Face Rule.** Every role shares the same sans-serif family; hierarchy is expressed only through size and weight, never a second typeface.
+**The Two Face Rule.** Exactly two typefaces, each locked to a role: Newsreader for Headline and Title, the system sans for Body and Label. Never a third face, and never Newsreader for body copy.
 
 ## Layout
 
@@ -149,6 +192,14 @@ Every component here is built to disappear into the reading experience — quiet
 - **Style:** 999px pill, small semibold text
 - **State:** neutral gray by default (`#eceae6` background); success state swaps to the Feedback success pair
 
+### Category Tags
+- **Style:** same 999px pill as a badge, but colored from the Category Palette (`tag-rust`, `tag-sage`, `tag-blue`, `tag-plum`, `tag-gold`) — soft tint background, solid-hue text.
+- **Placement:** sits just above a title (post card, post page) or inside a table cell (admin list); never overlaid on the image itself.
+
+### Cover Images
+- **Style:** 4:3 in a post card, 16:9 as a post's hero; `object-fit: cover`, same 10px radius as the card that holds it, no border of its own.
+- **Placeholder:** when a post has no cover image yet, a flat icon (a plain image glyph, never a category-specific illustration — categories are user-created and open-ended) centered on a soft gradient tinted by the post's category color (or the accent when there is none). Never fabricate a photo-like image in its place.
+
 ### Cards / Containers
 - **Corner Style:** 10px radius
 - **Background:** white Superfície on the warm Papel page background
@@ -157,9 +208,10 @@ Every component here is built to disappear into the reading experience — quiet
 - **Internal Padding:** 24px for post cards, 28–32px for forms and the full post view
 
 ### Inputs / Fields
-- **Style:** 1px Linha Fina border, 8px radius, white background
+- **Style:** 1px Linha Fina border, 8px radius, white background — the same style now covers `<select>` (category picker) as well as text inputs and textareas
 - **Focus:** 2px Ferrugem Quente outline (1px offset), border shifts to the same accent
 - **Error / Disabled:** not yet distinguished with a dedicated style
+- **Color Picker:** a row of 34px solid-color circles (one per Category Palette hue), the checked one ringed in Tinta — used only on the category form
 
 ### Navigation
 - **Style:** plain Tinta Suave text links, no underline at rest, turning to Ferrugem Quente on hover. The admin header is told apart from the public one only by swapping its bottom hairline for an accent-colored border — same layout, same typography.
@@ -169,9 +221,12 @@ Every component here is built to disappear into the reading experience — quiet
 ### Do:
 - **Do** keep Ferrugem Quente rare — one accent moment per view, never a background fill.
 - **Do** use the 1px hairline border as the only tool for separating surfaces; never simulate depth with shadow.
-- **Do** drive all hierarchy through the single sans-serif family's size and weight.
+- **Do** keep Newsreader locked to Headline/Title and the sans locked to Body/Label — never mix them within a role.
+- **Do** pick category color only from the five Category Palette swatches, never a typed hex.
+- **Do** show a flat icon placeholder for a missing cover image — never a fabricated photo.
 
 ### Don't:
 - **Don't** add `box-shadow` anywhere in this system.
-- **Don't** introduce a second typeface without a deliberate, documented decision.
+- **Don't** introduce a third typeface, or use Newsreader for body copy.
 - **Don't** use a border radius outside 8px, 10px, or the 999px pill.
+- **Don't** invent a category-specific illustration (a book for "Estudos", a controller for "Jogos") — categories are user-created and open-ended, so the placeholder stays generic.

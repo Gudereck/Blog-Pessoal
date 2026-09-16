@@ -24,8 +24,9 @@ Single admin/author manages posts through a protected panel (`/admin`): create, 
 
 ## Capabilities and Constraints
 
-- The `posts` table currently has no cover-image column (title, slug, excerpt, body, published flag/date only) — adding one is in scope for the current visual work, not yet built.
-- The author has no real photos or screenshots ready yet; the design should hold clear, deliberate space for cover images now and accept real ones later, not fake them today.
+- Posts can carry one cover image (uploaded file, stored in `public/uploads/`, filename kept in `posts.cover_image`) and one category (`posts.category_id`, managed in `/admin/categories`). Both are optional per post.
+- The author still has no real photos or screenshots; posts without a cover image fall back to a calm icon placeholder (never a fabricated photo) tinted by the post's category color.
+- Categories are user-managed (create/edit/delete in the admin panel) with a name and one color chosen from five curated presets — never a free-typed color, to keep the palette coherent as categories are added.
 - Hosting/deploy target is undecided — the author hasn't chosen between staying local (XAMPP) or publishing to a server yet. Don't assume a specific host or bake in deploy-specific constraints.
 
 ## Evidence on Hand
