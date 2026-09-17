@@ -7,6 +7,7 @@
 <?php if ($posts === []): ?>
     <p class="muted">Nenhum post criado ainda.</p>
 <?php else: ?>
+    <div class="table-scroll">
     <table class="table">
         <thead>
         <tr>
@@ -56,4 +57,5 @@
         <?php endforeach; ?>
         </tbody>
     </table>
+    </div>
 <?php endif; ?>

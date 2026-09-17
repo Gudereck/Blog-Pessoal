@@ -7,6 +7,7 @@
 <?php if ($categories === []): ?>
     <p class="muted">Nenhuma categoria criada ainda.</p>
 <?php else: ?>
+    <div class="table-scroll">
     <table class="table">
         <thead>
         <tr>
@@ -34,4 +35,5 @@
         <?php endforeach; ?>
         </tbody>
     </table>
+    </div>
 <?php endif; ?>
