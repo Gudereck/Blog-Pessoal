@@ -48,6 +48,22 @@ function texto_para_html(string $texto): string
     return implode("\n", $html);
 }
 
+/** Icone generico usado no lugar de uma imagem de capa ainda nao enviada. */
+function cover_icon(): string
+{
+    // Puramente decorativo (o post ja tem titulo/texto ao lado), entao fica
+    // escondido da arvore de acessibilidade.
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">'
+        . '<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/>'
+        . '<path d="M21 15l-5-5-4 4-3-3-6 6"/></svg>';
+}
+
+/** Classe CSS de tag/placeholder para a cor de categoria (com fallback). */
+function category_tag_class(?string $color): string
+{
+    return 'tag-' . ($color ?: 'rust');
+}
+
 /** Resumo do post: usa o excerpt ou corta o corpo. */
 function resumo(array $post, int $limite = 180): string
 {

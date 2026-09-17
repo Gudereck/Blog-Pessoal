@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Controllers\Admin\DashboardController;
 use App\Controllers\Admin\PostController as AdminPostController;
 use App\Controllers\AuthController;
@@ -28,3 +29,10 @@ $router->post('/admin/posts', [AdminPostController::class, 'store']);
 $router->get('/admin/posts/{id}/edit', [AdminPostController::class, 'edit']);
 $router->post('/admin/posts/{id}', [AdminPostController::class, 'update']);
 $router->post('/admin/posts/{id}/delete', [AdminPostController::class, 'destroy']);
+
+$router->get('/admin/categories', [AdminCategoryController::class, 'index']);
+$router->get('/admin/categories/create', [AdminCategoryController::class, 'create']);
+$router->post('/admin/categories', [AdminCategoryController::class, 'store']);
+$router->get('/admin/categories/{id}/edit', [AdminCategoryController::class, 'edit']);
+$router->post('/admin/categories/{id}', [AdminCategoryController::class, 'update']);
+$router->post('/admin/categories/{id}/delete', [AdminCategoryController::class, 'destroy']);

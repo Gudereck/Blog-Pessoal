@@ -10,22 +10,24 @@ blog/
 ├── public/              <- unica pasta exposta na web (document root)
 │   ├── index.php        <- front controller: toda requisicao passa por aqui
 │   ├── .htaccess        <- reescreve URLs para o index.php
+│   ├── uploads/         <- imagens de capa enviadas pelo admin
 │   └── assets/css/
 ├── app/
 │   ├── bootstrap.php    <- autoload PSR-4, erros, helpers
-│   ├── helpers.php      <- e(), csrf_field(), data_br(), texto_para_html()
-│   ├── Core/            <- Database, Router, View, Controller, Auth, Session, Csrf
+│   ├── helpers.php      <- e(), csrf_field(), data_br(), texto_para_html(), cover_icon()
+│   ├── Core/            <- Database, Router, View, Controller, Auth, Session, Csrf, Slugger
 │   ├── Controllers/
 │   │   ├── HomeController.php
 │   │   ├── PostController.php
 │   │   ├── AuthController.php
-│   │   └── Admin/       <- DashboardController, PostController
-│   └── Models/          <- Post, User
+│   │   └── Admin/       <- DashboardController, PostController, CategoryController
+│   └── Models/          <- Post, Category, User
 ├── views/               <- templates (layouts, home, post, auth, admin, errors)
 ├── routes/web.php       <- todas as rotas
 ├── config/config.php    <- configuracao (aceita variaveis de ambiente)
 └── database/
-    ├── schema.sql       <- criacao das tabelas
+    ├── schema.sql                     <- criacao das tabelas (instalacao nova)
+    ├── migrate_categories_covers.php  <- migracao para bancos ja existentes
     ├── create_user.php  <- cria usuario do painel
     └── seed.php         <- post de exemplo
 ```
@@ -46,6 +48,12 @@ blog/
 | GET    | `/admin/posts/{id}/edit`  | formulario de edicao       |
 | POST   | `/admin/posts/{id}`       | grava a edicao             |
 | POST   | `/admin/posts/{id}/delete`| exclui o post              |
+| GET    | `/admin/categories`       | lista de categorias        |
+| GET    | `/admin/categories/create`| formulario de nova categoria |
+| POST   | `/admin/categories`       | grava nova categoria       |
+| GET    | `/admin/categories/{id}/edit` | formulario de edicao   |
+| POST   | `/admin/categories/{id}`  | grava a edicao             |
+| POST   | `/admin/categories/{id}/delete` | exclui a categoria   |
 
 ## Instalacao
 
@@ -69,6 +77,13 @@ blog/
 
    ```
    C:\xampp\php\php.exe database/seed.php
+   ```
+
+5. Se o banco ja existia antes das categorias e da imagem de capa (`schema.sql`
+   so cria tabelas que ainda nao existem), aplique a migracao unica:
+
+   ```
+   C:\xampp\php\php.exe database/migrate_categories_covers.php
    ```
 
 ## Rodando
@@ -106,6 +121,15 @@ diretamente para `public/`.
 | `DB_PASSWORD` | (vazio)     |
 
 Em producao, defina `APP_DEBUG=false` e uma senha real para o MySQL.
+
+## Imagens e categorias
+
+- Imagem de capa: upload opcional por post (JPG/PNG/WEBP/GIF, ate 5MB),
+  salva em `public/uploads/` com nome aleatorio; o banco guarda so o nome
+  do arquivo. Sem imagem, o post mostra um icone de espaco reservado.
+- Categorias: gerenciadas em `/admin/categories`, cada uma com uma cor
+  entre cinco predefinidas (mantidas em `App\Models\Category::CORES`) para
+  a paleta ficar sempre coerente.
 
 ## Seguranca implementada
 
